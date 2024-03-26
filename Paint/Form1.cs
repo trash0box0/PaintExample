@@ -15,6 +15,7 @@ namespace Paint
         private List<IFigure> figures = new List<IFigure>();
         private Int64 figure_counter = 0;
         private IFigure? drawing_figure = null;
+        private IFigure? moving_figure = null;
 
         public Form1()
         {
@@ -61,6 +62,12 @@ namespace Paint
 
         private void canvas_MouseMove(object sender, MouseEventArgs e)
         {
+            if (moving_figure != null)
+            {
+                moving_figure.Move(new Point(e.X, e.Y));
+                canvas.Refresh();
+            }
+
             if (drawing_figure != null)
             {
                 drawing_figure.SetPoint(new Point(e.X, e.Y));
@@ -72,6 +79,16 @@ namespace Paint
         {
             if (current_action == Action.Move)
             {
+                if (moving_figure == null)
+                {
+                    moving_figure = figures.Find(figure => figure.CheckCross(new Point(e.X, e.Y)));
+                }
+                else
+                {
+                    moving_figure = null;
+                }
+
+                canvas.Refresh();
                 return;
             }
 

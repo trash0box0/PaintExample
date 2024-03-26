@@ -14,7 +14,17 @@ namespace Paint
 
         public override bool CheckCross(Point point)
         {
-            return false;
+            if (!base.CheckCross(point)) return false;
+
+            double distance = Math.Abs(
+                (second_point.Y - first_point.Y) * point.X - 
+                (second_point.X - first_point.X) * point.Y +
+                second_point.X * first_point.Y -
+                second_point.Y * first_point.X) /
+                Math.Sqrt((second_point.Y - first_point.Y) * (second_point.Y - first_point.Y) +
+                (second_point.X - first_point.X) * (second_point.X - first_point.X));
+
+            return distance < 10;
         }
 
         public override void Draw(Graphics graphics)

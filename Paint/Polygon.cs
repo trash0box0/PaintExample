@@ -24,7 +24,21 @@ namespace Paint
 
         public override void Move(Point location)
         {
-            if (is_finished) return;
+            if (!is_finished) return;
+
+            int delta_X = center.X - location.X;
+            int delta_Y = center.Y - location.Y;
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i].X -= delta_X;
+                points[i].Y -= delta_Y;
+            }
+
+            center = location;
+
+            container_rect.X -= delta_X;
+            container_rect.Y -= delta_Y;
         }
 
         public override void SetPoint(Point p2)

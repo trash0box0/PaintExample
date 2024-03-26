@@ -90,14 +90,14 @@ namespace Paint
             int delta_X = center.X - location.X;
             int delta_Y = center.Y - location.Y;
 
-            first_point.X += delta_X;
-            first_point.Y += delta_Y;
-            second_point.X += delta_X;
-            second_point.Y += delta_Y;
+            first_point.X -= delta_X;
+            first_point.Y -= delta_Y;
+            second_point.X -= delta_X;
+            second_point.Y -= delta_Y;
             center = location;
 
-            container_rect.X += delta_X;
-            container_rect.Y += delta_Y;
+            container_rect.X -= delta_X;
+            container_rect.Y -= delta_Y;
         }
 
         public override void SetPoint(Point p2)
