@@ -34,14 +34,16 @@
             ButtonColorBorder = new Button();
             ButtonRectangle = new Button();
             ButtonLine = new Button();
-            ButtonTriangle = new Button();
+            ButtonPolygon = new Button();
             ButtonEllipse = new Button();
             ButtonColorFill = new Button();
             toolTip = new ToolTip(components);
             ButtonRepeat = new Button();
             ButtonCancel = new Button();
             ButtonMove = new Button();
+            VertexCount = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)canvas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)VertexCount).BeginInit();
             SuspendLayout();
             // 
             // canvas
@@ -50,7 +52,7 @@
             canvas.Cursor = Cursors.Cross;
             canvas.Location = new Point(12, 128);
             canvas.Name = "canvas";
-            canvas.Size = new Size(1408, 578);
+            canvas.Size = new Size(1410, 580);
             canvas.TabIndex = 0;
             canvas.TabStop = false;
             toolTip.SetToolTip(canvas, "Область рисования");
@@ -91,15 +93,16 @@
             ButtonLine.UseVisualStyleBackColor = true;
             ButtonLine.Click += ButtonLine_Click;
             // 
-            // ButtonTriangle
+            // ButtonPolygon
             // 
-            ButtonTriangle.Image = (Image)resources.GetObject("ButtonTriangle.Image");
-            ButtonTriangle.Location = new Point(252, 62);
-            ButtonTriangle.Name = "ButtonTriangle";
-            ButtonTriangle.Size = new Size(50, 50);
-            ButtonTriangle.TabIndex = 6;
-            toolTip.SetToolTip(ButtonTriangle, "Треугольник");
-            ButtonTriangle.UseVisualStyleBackColor = true;
+            ButtonPolygon.Image = (Image)resources.GetObject("ButtonPolygon.Image");
+            ButtonPolygon.Location = new Point(252, 62);
+            ButtonPolygon.Name = "ButtonPolygon";
+            ButtonPolygon.Size = new Size(50, 50);
+            ButtonPolygon.TabIndex = 6;
+            toolTip.SetToolTip(ButtonPolygon, "Многоугольник");
+            ButtonPolygon.UseVisualStyleBackColor = true;
+            ButtonPolygon.Click += ButtonPolygon_Click;
             // 
             // ButtonEllipse
             // 
@@ -146,23 +149,36 @@
             // ButtonMove
             // 
             ButtonMove.Image = (Image)resources.GetObject("ButtonMove.Image");
-            ButtonMove.Location = new Point(319, 37);
+            ButtonMove.Location = new Point(302, 12);
             ButtonMove.Name = "ButtonMove";
             ButtonMove.Size = new Size(50, 50);
             ButtonMove.TabIndex = 9;
             toolTip.SetToolTip(ButtonMove, "Двигать");
             ButtonMove.UseVisualStyleBackColor = true;
+            ButtonMove.Click += ButtonMove_Click;
+            // 
+            // VertexCount
+            // 
+            VertexCount.Location = new Point(302, 72);
+            VertexCount.Maximum = new decimal(new int[] { 16, 0, 0, 0 });
+            VertexCount.Minimum = new decimal(new int[] { 3, 0, 0, 0 });
+            VertexCount.Name = "VertexCount";
+            VertexCount.Size = new Size(50, 27);
+            VertexCount.TabIndex = 11;
+            toolTip.SetToolTip(VertexCount, "Количество вершин многоугольника");
+            VertexCount.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1432, 718);
+            Controls.Add(VertexCount);
             Controls.Add(ButtonMove);
             Controls.Add(ButtonRepeat);
             Controls.Add(ButtonCancel);
             Controls.Add(ButtonColorFill);
-            Controls.Add(ButtonTriangle);
+            Controls.Add(ButtonPolygon);
             Controls.Add(ButtonEllipse);
             Controls.Add(ButtonLine);
             Controls.Add(ButtonRectangle);
@@ -170,7 +186,9 @@
             Controls.Add(canvas);
             Name = "Form1";
             Text = "Form1";
+            ResizeEnd += Form1_ResizeEnd;
             ((System.ComponentModel.ISupportInitialize)canvas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)VertexCount).EndInit();
             ResumeLayout(false);
         }
 
@@ -180,12 +198,13 @@
         private Button ButtonColorBorder;
         private Button ButtonRectangle;
         private Button ButtonLine;
-        private Button ButtonTriangle;
+        private Button ButtonPolygon;
         private Button ButtonEllipse;
         private Button ButtonColorFill;
         private ToolTip toolTip;
         private Button ButtonRepeat;
         private Button ButtonCancel;
         private Button ButtonMove;
+        private NumericUpDown VertexCount;
     }
 }

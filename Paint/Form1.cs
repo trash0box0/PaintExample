@@ -5,7 +5,7 @@ namespace Paint
         AddLine,
         AddRectangle,
         AddEllipse,
-        AddTriangle,
+        AddPolygon,
         Move
     }
 
@@ -19,6 +19,9 @@ namespace Paint
         public Form1()
         {
             InitializeComponent();
+
+            ButtonCancel.Visible = false;
+            ButtonRepeat.Visible = false;
         }
 
         private void canvas_Paint(object sender, PaintEventArgs e)
@@ -60,7 +63,7 @@ namespace Paint
         {
             if (drawing_figure != null)
             {
-                drawing_figure.SetPoint(new Point(e.X, e.Y), false);
+                drawing_figure.SetPoint(new Point(e.X, e.Y));
                 canvas.Refresh();
             }
         }
@@ -96,6 +99,14 @@ namespace Paint
                             ButtonColorBorder.BackColor,
                             ButtonColorFill.BackColor);
                         break;
+                    case Action.AddPolygon:
+                        drawing_figure = new Polygon(
+                            figure_counter,
+                            (int)VertexCount.Value,
+                            new Point(e.X, e.Y),
+                            ButtonColorBorder.BackColor,
+                            ButtonColorFill.BackColor);
+                        break;
                     default: return;
                 }
 
@@ -103,7 +114,7 @@ namespace Paint
                 return;
             }
 
-            drawing_figure.SetPoint(new Point(e.X, e.Y), false);
+            drawing_figure.SetPoint(new Point(e.X, e.Y));
             drawing_figure.ConfirmPoint();
             if (drawing_figure.IsFinished())
             {
@@ -126,6 +137,23 @@ namespace Paint
         private void ButtonEllipse_Click(object sender, EventArgs e)
         {
             current_action = Action.AddEllipse;
+        }
+
+        private void ButtonPolygon_Click(object sender, EventArgs e)
+        {
+            current_action = Action.AddPolygon;
+        }
+
+        private void ButtonMove_Click(object sender, EventArgs e)
+        {
+            current_action = Action.Move;
+        }
+
+        private void Form1_ResizeEnd(object sender, EventArgs e)
+        {
+            canvas.Width = this.Width - 40;
+            canvas.Height = this.Height - 85;
+            canvas.Refresh();
         }
     }
 }

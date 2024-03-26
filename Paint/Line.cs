@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Paint
 {
-    public class Line : TwoPointsBased
+    internal class Line : TwoPointsBased
     {
         public Line(Int64 ID, Point location, Color borderColor) :
             base(ID, location, borderColor, borderColor)
@@ -23,6 +23,8 @@ namespace Paint
 
             Pen pen = new Pen(borderColor, 5);
             graphics.DrawLine(pen, first_point, second_point);
+
+            base.Draw(graphics);
         }
     }
 }

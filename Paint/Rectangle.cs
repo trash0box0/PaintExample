@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Paint
 {
-    public class Rectangle : TwoPointsBased
+    internal class Rectangle : TwoPointsBased
     {
         public Rectangle(Int64 ID, Point location, Color borderColor, Color fillColor) :
             base(ID, location, borderColor, fillColor)
@@ -24,6 +24,8 @@ namespace Paint
                 container_rect.Y,
                 container_rect.Width,
                 container_rect.Height);
+
+            base.Draw(graphics);
         }
     }
 }

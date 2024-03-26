@@ -24,6 +24,8 @@ namespace Paint
                 container_rect.Y,
                 container_rect.Width,
                 container_rect.Height);
+
+            base.Draw(graphics);
         }
     }
 }
