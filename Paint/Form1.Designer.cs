@@ -134,6 +134,7 @@
             ButtonRepeat.TabIndex = 8;
             toolTip.SetToolTip(ButtonRepeat, "Повторить");
             ButtonRepeat.UseVisualStyleBackColor = true;
+            ButtonRepeat.Click += ButtonRepeat_Click;
             // 
             // ButtonCancel
             // 
@@ -145,6 +146,7 @@
             ButtonCancel.TabIndex = 7;
             toolTip.SetToolTip(ButtonCancel, "Отменить");
             ButtonCancel.UseVisualStyleBackColor = false;
+            ButtonCancel.Click += ButtonCancel_Click;
             // 
             // ButtonMove
             // 

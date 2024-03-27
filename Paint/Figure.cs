@@ -16,6 +16,8 @@ namespace Paint
         void SetPoint(Point p2);
         void ConfirmPoint();
         bool IsFinished();
+
+        Point GetLocation();
     }
 
     internal abstract class Figure : IFigure
@@ -41,6 +43,8 @@ namespace Paint
         }
 
         public Int64 GetID() { return ID; }
+
+        public Point GetLocation() { return center; }
 
         public abstract void Move(Point location);
 
