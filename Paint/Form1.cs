@@ -63,7 +63,11 @@ namespace Paint
         {}
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
-        {}
+        {
+            canvas.Width = this.Width - 40;
+            canvas.Height = this.Height - 85;
+            canvas.Refresh();
+        }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {}
