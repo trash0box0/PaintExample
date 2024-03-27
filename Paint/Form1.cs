@@ -91,6 +91,7 @@ namespace Paint
                 else
                 {
                     history.Push(new MoveAction(moving_figure, before_move, moving_figure.GetLocation()));
+                    canceled.Clear();
                     moving_figure = null;
                 }
 
@@ -143,7 +144,7 @@ namespace Paint
             {
                 figures.Add(drawing_figure);
                 history.Push(new AddAction(drawing_figure));
-
+                canceled.Clear();
                 drawing_figure = null;
                 canvas.Refresh();
             }
